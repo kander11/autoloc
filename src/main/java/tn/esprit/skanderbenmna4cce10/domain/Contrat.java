@@ -23,12 +23,10 @@ public class Contrat {
     private BigDecimal montantTotal;
     private boolean valide;
 
-    // Côté propriétaire du OneToOne (colonne reservation_id)
-    @OneToOne
-    @JoinColumn(name = "reservation_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private Reservation reservation;
 
-    // cascade ALL : supprimer un contrat supprime ses paiements
-    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Paiement> paiements = new ArrayList<>();
 }

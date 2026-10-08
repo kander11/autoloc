@@ -23,14 +23,11 @@ public class Reservation {
     private StatutReservation statut;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "client_id")
     private Client client;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "vehicule_id")
     private Vehicule vehicule;
 
-    // Côté inverse : la clé étrangère est dans la table contrat
-    @OneToOne(mappedBy = "reservation")
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Contrat contrat;
 }
