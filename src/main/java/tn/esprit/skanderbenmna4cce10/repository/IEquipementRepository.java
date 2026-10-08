@@ -1,4 +1,7 @@
 package tn.esprit.skanderbenmna4cce10.repository;
 
-public interface IEquipementRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import tn.esprit.skanderbenmna4cce10.domain.Equipement;
+
+public interface IEquipementRepository extends JpaRepository<Equipement, Long> {
 }
