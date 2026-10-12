@@ -1,10 +1,9 @@
 package tn.esprit.skanderbenmna4cce10.services;
 
+import java.util.List;
 import tn.esprit.skanderbenmna4cce10.domain.Vehicule;
 
-import java.util.List;
-
-public interface IVehiculeservices {
+public interface IVehiculeService {
 
     Vehicule create(Vehicule vehicule);
 
@@ -12,5 +11,7 @@ public interface IVehiculeservices {
 
     List<Vehicule> findAll();
 
-    void delete(Long id);
+    Vehicule update(Long id, Vehicule vehicule);
+
+    void deleteById(Long id);
 }
