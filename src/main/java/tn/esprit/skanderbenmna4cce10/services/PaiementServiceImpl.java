@@ -23,4 +23,29 @@ public class PaiementServiceImpl implements IPaiementService {
     public List<Paiement> findAll() {
         return paiementRepository.findAll();
     }
+
+    @Override
+    public Paiement create(Paiement paiement) {
+        if (paiement.getIdPaiement() != null) {
+            throw new IllegalArgumentException("Un nouveau paiement ne doit pas avoir d'identifiant");
+        }
+        return paiementRepository.save(paiement);
+    }
+
+    @Override
+    public Paiement update(Long id, Paiement paiement) {
+        if (!paiementRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Paiement", id);
+        }
+        paiement.setIdPaiement(id);
+        return paiementRepository.save(paiement);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        if (!paiementRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Paiement", id);
+        }
+        paiementRepository.deleteById(id);
+    }
 }
